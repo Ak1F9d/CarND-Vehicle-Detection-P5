@@ -37,17 +37,17 @@ The code for this step is contained in lines 15 through 100 of the file called `
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
-![car](output_images/image0145.png)
-![noncar](output_images/image22.png)   
+![car](image0145.png)
+![noncar](image22.png)   
 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=9`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:   
 
 car   
-![car_features](output_images/car_features.png)  
+![car_features](car_features.png)  
 notcar  
-![notcar_features](output_images/notcar_faetures.png)
+![notcar_features](notcar_faetures.png)
 
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
@@ -68,7 +68,7 @@ The code for this step is contained in lines 154 through 190 of the file called 
 I trained a linear SVM using HOG features(shape), color histograms(color) and  binned color features(shape & color).
 First, I extracted features and normalized them using StandardScaler() function.   
 Here is the result of normalizing:
-![narmalize](output_images/normalize.png)  
+![narmalize](normalize.png)  
 
 Then, I split features into training and test sets(90% and 10%) and used LinearSVC() function. I gained 0.9899 accuracy score on the test set.  
 
@@ -79,7 +79,7 @@ The code for this step is contained in lines 195 through 237 of the file called 
 I used three different window sizes: 64x64, 96x96 and 128x128. Each windows overlaps 0.7, 0.8, 0.5.
 Here is the windows I used:
 
-![window](output_images/window.png)
+![window](window.png)
 
 I used medium windows (96x96) in right part of the image because the car always go the left lane. Small windows(64x64) were used around center area of the image and large windows(128x128) were used in marginal area because distance from the car is far and the car is small in center.  
 
@@ -88,7 +88,7 @@ I used medium windows (96x96) in right part of the image because the car always 
 
 Ultimately I searched on three scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result. Here are some example images:
 
-![ex](output_images/ex.png)
+![ex](ex.png)
 
 
 
@@ -108,13 +108,13 @@ I recorded the positions of positive detections in each frame of the video.  Fro
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
 ##### Here are six frames and their corresponding heatmaps:
-![heatmaps](output_images/heatmaps.png)
+![heatmaps](heatmaps.png)
 
 ##### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
 
 ![label](output_images/label.png)
 ##### Here the resulting bounding boxes are drawn onto the last frame in the series:
-![bboxes](output_images/final_output.png)
+![bboxes](final_output.png)
 
 
 ---
